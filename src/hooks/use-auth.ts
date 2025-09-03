@@ -33,7 +33,9 @@ export function useAuth() {
 
   const checkAuth = async () => {
     try {
-      const response = await fetch('/api/auth/me')
+      const response = await fetch('/api/auth/me', {
+        credentials: 'include'
+      })
       if (response.ok) {
         const data = await response.json()
         setUser(data.user)
@@ -52,6 +54,7 @@ export function useAuth() {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify(credentials),
       })
 
@@ -78,6 +81,7 @@ export function useAuth() {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify(credentials),
       })
 
@@ -101,6 +105,7 @@ export function useAuth() {
     try {
       const response = await fetch('/api/auth/logout', {
         method: 'POST',
+        credentials: 'include',
       })
 
       if (response.ok) {
